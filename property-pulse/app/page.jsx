@@ -1,10 +1,19 @@
 import Link from "next/link";
+import Hero from "@/components/Hero";
+import InfoBoxes from "@/components/InfoBoxes";
+import Footer from "@/components/Footer";
+import HomePageProperties from "@/components/HomePageProperties";
+import AllPropertiesButton from "@/components/AllPropertiesButton";
+
 function Homepage() {
   return (
-    <div>
-      <h1 className="text-3xl"> Welcome</h1>
-      <Link href={"/properties"}>Go to properties</Link>
-    </div>
+    <>
+      <Hero />
+      <InfoBoxes />
+      <HomePageProperties />
+      <AllPropertiesButton />
+      <Footer />
+    </>
   );
 }
 
