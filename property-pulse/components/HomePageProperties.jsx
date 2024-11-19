@@ -1,7 +1,24 @@
+"use client";
 import PropertyCard from "./PropertyCard";
 import { fetchProperties } from "@/utils/request";
-const HomePageProperties = async () => {
-  const properties = await fetchProperties();
+import { useState, useEffect } from "react";
+import Loader from "@/components/Loader";
+const HomePageProperties = () => {
+  const [loading, setLoading] = useState(true);
+  const [properties, setProperties] = useState([]);
+  const getProperties = async () => {
+    setLoading(true);
+    const res = await fetchProperties();
+    console.log(res);
+
+    setProperties(res);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getProperties();
+  }, []);
+
+  if (loading) return <Loader />;
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);

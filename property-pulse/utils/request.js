@@ -3,7 +3,8 @@ const fetchProperties = async () => {
   if (!apiDomain) return [];
   try {
     const res = await fetch(`${apiDomain}properties`);
-    return await res.json();
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.log(`Error While Fetching Data: ${error}`);
     return [];
@@ -14,7 +15,8 @@ const fetchProperty = async (id) => {
 
   try {
     const res = await fetch(`${apiDomain}properties/${id}`);
-    return await res.json();
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.log(`Error While Fetching Data: ${error}`);
     return null;

@@ -1,18 +1,23 @@
 "use client";
 import PropertyCard from "@/components/PropertyCard";
 import { fetchProperties } from "@/utils/request";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "@/components/Loader";
 
-async function PropertiesPage() {
+function PropertiesPage() {
   const [loading, setLoading] = useState(true);
   const [properties, setProperties] = useState([]);
   const getProperties = async () => {
     setLoading(true);
     const res = await fetchProperties();
+    console.log(res);
+
     setProperties(res);
     setLoading(false);
   };
+  useEffect(() => {
+    getProperties();
+  }, []);
 
   properties.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);
