@@ -7,11 +7,10 @@ const PropertyCard = ({ property }) => {
     <div className="rounded-xl shadow-md relative">
       <Image
         src={`/images/properties/${property.images[0]}`}
-        alt=""
-        height={0}
-        width={0}
-        sizes="100vw"
-        className="w-full h-auto rounded-t-xl"
+        alt={property.name}
+        width={800} // Desired width (in pixels)
+        height={600} // Desired height (in pixels)
+        priority={true} // Use for important images
       />
       <div className="p-4">
         <div className="text-left md:text-center lg:text-left mb-6">
@@ -72,7 +71,7 @@ const PropertyCard = ({ property }) => {
             </span>
           </div>
           <Link
-            href="property.html"
+            href={`/properties/${property._id}`}
             className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Details
