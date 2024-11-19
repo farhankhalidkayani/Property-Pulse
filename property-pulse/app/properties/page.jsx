@@ -1,11 +1,23 @@
+"use client";
 import PropertyCard from "@/components/PropertyCard";
 import { fetchProperties } from "@/utils/request";
+import { useState } from "react";
+import Loader from "@/components/Loader";
 
 async function PropertiesPage() {
-  const properties = await fetchProperties();
+  const [loading, setLoading] = useState(true);
+  const [properties, setProperties] = useState([]);
+  const getProperties = async () => {
+    setLoading(true);
+    const res = await fetchProperties();
+    setProperties(res);
+    setLoading(false);
+  };
+
   properties.sort((a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);
   });
+  if (loading) return <Loader />;
   return (
     <>
       <section className="px-4 py-6">
